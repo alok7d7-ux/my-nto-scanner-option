@@ -1,0 +1,5 @@
+Index,TradingView,5m,15m,1h,1d,Spot Price,Signal,Suggested Strikes
+Sensex,https://www.tradingview.com/chart/?symbol=BSESN,34.27,58.23,61.39,41.43,73852.9,Mixed / Neutral,Neutral / No Strike Bias
+Bank Nifty,https://www.tradingview.com/chart/?symbol=NSEBANK,46.6,49.94,59.64,48.23,55488.1,Mixed / Neutral,Neutral / No Strike Bias
+Nifty 50,https://www.tradingview.com/chart/?symbol=NSEI,35.11,58.09,60.73,41.66,22888.95,Mixed / Neutral,Neutral / No Strike Bias
+Bankex,https://www.tradingview.com/chart/?symbol=BSEBANK,,,,,,Data Error,N/A
