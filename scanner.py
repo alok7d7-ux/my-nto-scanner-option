@@ -5,10 +5,10 @@ import yfinance as yf
 
 # Major Indices Configuration & Strike Steps
 INDEX_UNIVERSE = {
-    "Nifty 50": {"symbol": "^NSEI", "step": 50},
-    "Bank Nifty": {"symbol": "^NSEBANK", "step": 100},
-    "Sensex": {"symbol": "^BSESN", "step": 100},
-    "Bankex": {"symbol": "^BSEBANK", "step": 100},
+    "Nifty 50": {"symbol": "^NSEI", "step": 50, "tv_prefix": "NIFTY"},
+    "Bank Nifty": {"symbol": "^NSEBANK", "step": 100, "tv_prefix": "BANKNIFTY"},
+    "Sensex": {"symbol": "^BSESN", "step": 100, "tv_prefix": "SENSEX"},
+    "Bankex": {"symbol": "^BSEBANK", "step": 100, "tv_prefix": "BANKEX"},
 }
 
 TIMEFRAMES = {
@@ -23,7 +23,6 @@ NTO_SMOOTH = 80
 
 
 def calculate_nto(df, length=14, smooth=80):
-  """Computes Normalized Trend Oscillator values."""
   if df is None or len(df) < max(length, smooth):
     return None
 
@@ -43,36 +42,14 @@ def calculate_nto(df, length=14, smooth=80):
   return round(float(nto_line.iloc[-1]), 2)
 
 
-def get_recommended_strikes(spot_price, step, signal_type):
-  """Generates ATM and OTM CE/PE strike suggestions based on NTO signal."""
-  if not spot_price:
-    return "N/A"
-
-  atm = round(spot_price / step) * step
-
-  if "BULLISH" in signal_type:
-    ce_atm = int(atm)
-    ce_otm1 = int(atm + step)
-    ce_otm2 = int(atm + (2 * step))
-    return f"CE Strikes: {ce_atm} (ATM), {ce_otm1}, {ce_otm2} (OTM)"
-
-  elif "BEARISH" in signal_type:
-    pe_atm = int(atm)
-    pe_otm1 = int(atm - step)
-    pe_otm2 = int(atm - (2 * step))
-    return f"PE Strikes: {pe_atm} (ATM), {pe_otm1}, {pe_otm2} (OTM)"
-
-  else:
-    return "Neutral / No Strike Bias"
-
-
 def scan_index(name, config):
   symbol = config["symbol"]
   step = config["step"]
+  tv_prefix = config["tv_prefix"]
 
   results = {
       "Index": name,
-      "TradingView": f"https://www.tradingview.com/chart/?symbol={symbol.replace('^','')}",
+      "Spot Chart": f"https://www.tradingview.com/chart/?symbol=NSE:{tv_prefix}",
   }
 
   latest_spot = None
@@ -96,29 +73,48 @@ def scan_index(name, config):
 
   results["Spot Price"] = round(latest_spot, 2) if latest_spot else None
 
+  # Determine NTO signal alignment
   try:
     vals = [results["5m"], results["15m"], results["1h"], results["1d"]]
     if all(v is not None for v in vals):
       if all(v > 50 for v in vals):
-        results["Signal"] = "FULL BULLISH 🟢 (CE Bias)"
+        results["Signal"] = "FULL BULLISH 🟢"
+        atm = round(latest_spot / step) * step if latest_spot else 0
+        results["Actionable Option"] = f"CE (ATM: {int(atm)} | OTM: {int(atm+step)})"
+        results.update({
+            "Option TV Search": f"https://www.tradingview.com/symbols/search/?q={tv_prefix}%20{int(atm)}%20CE"
+        })
       elif all(v < 50 for v in vals):
-        results["Signal"] = "FULL BEARISH 🔴 (PE Bias)"
+        results["Signal"] = "FULL BEARISH 🔴"
+        atm = round(latest_spot / step) * step if latest_spot else 0
+        results["Actionable Option"] = f"PE (ATM: {int(atm)} | OTM: {int(atm-step)})"
+        results.update({
+            "Option TV Search": f"https://www.tradingview.com/symbols/search/?q={tv_prefix}%20{int(atm)}%20PE"
+        })
       else:
         results["Signal"] = "Mixed / Neutral"
+        results["Actionable Option"] = "No Bias - Avoid Trade"
+        results["Option TV Search"] = (
+            f"https://www.tradingview.com/chart/?symbol=NSE:{tv_prefix}"
+        )
     else:
       results["Signal"] = "Data Error"
+      results["Actionable Option"] = "N/A"
+      results["Option TV Search"] = (
+          f"https://www.tradingview.com/chart/?symbol=NSE:{tv_prefix}"
+      )
   except:
     results["Signal"] = "Error"
-
-  results["Suggested Strikes"] = get_recommended_strikes(
-      latest_spot, step, results["Signal"]
-  )
+    results["Actionable Option"] = "N/A"
+    results["Option TV Search"] = (
+        f"https://www.tradingview.com/chart/?symbol=NSE:{tv_prefix}"
+    )
 
   return results
 
 
 def run_scanner():
-  print("🚀 Running Index Options NTO Scanner with Strike Suggestions...")
+  print("🚀 Running Index Options & Strike NTO Scanner...")
   start_time = time.time()
   scan_results = []
 
