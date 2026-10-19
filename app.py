@@ -5,10 +5,11 @@ st.set_page_config(
     page_title="Index Options NTO Scanner", page_icon="📈", layout="wide"
 )
 
-st.title("📊 Index Options Multi-TF NTO Scanner")
+st.title("📊 Index Options Multi-TF NTO Scanner & Strike Hub")
 st.markdown(
-    "Multi-Timeframe NTO scanning for **Nifty 50, Bank Nifty, Sensex, and"
-    " Bankex** with automated CE/PE strike price recommendations."
+    "Multi-timeframe NTO scanning for **Nifty 50, Bank Nifty, Sensex, and"
+    " Bankex** with direct links to Spot and targeted CE/PE Option charts on"
+    " TradingView."
 )
 
 
@@ -30,8 +31,8 @@ else:
       "Filter by Signal",
       [
           "All",
-          "FULL BULLISH 🟢 (CE Bias)",
-          "FULL BEARISH 🔴 (PE Bias)",
+          "FULL BULLISH 🟢",
+          "FULL BEARISH 🔴",
           "Mixed / Neutral",
       ],
   )
@@ -64,17 +65,22 @@ else:
   st.dataframe(
       filtered_df,
       column_config={
-          "TradingView": st.column_config.LinkColumn(
-              "TradingView Chart",
-              help="Click to open direct index chart on TradingView",
-              display_text="📈 Open Chart",
+          "Spot Chart": st.column_config.LinkColumn(
+              "Spot Chart",
+              help="Open underlying index chart on TradingView",
+              display_text="📈 View Spot",
+          ),
+          "Option TV Search": st.column_config.LinkColumn(
+              "Option Chart / Search",
+              help="Open targeted CE/PE option contract search on TradingView",
+              display_text="🎯 View Option",
           ),
           "Spot Price": st.column_config.NumberColumn(
               "Spot Price", format="₹%.2f"
           ),
-          "Suggested Strikes": st.column_config.TextColumn(
-              "Suggested CE / PE Strikes",
-              help="Recommended ATM and OTM strike options based on NTO alignment",
+          "Actionable Option": st.column_config.TextColumn(
+              "Recommended Strike Setup",
+              help="ATM and OTM options corresponding to the current NTO bias",
           ),
       },
       use_container_width=True,
