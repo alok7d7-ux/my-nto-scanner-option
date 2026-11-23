@@ -1,5 +1,5 @@
 Index,Spot Chart,5m,15m,1h,1d,Spot Price,Signal,Actionable Option,Option TV Search
-Sensex,https://www.tradingview.com/chart/?symbol=NSE:SENSEX,74.59,57.99,75.72,49.69,83919.71,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:SENSEX
-Bank Nifty,https://www.tradingview.com/chart/?symbol=NSE:BANKNIFTY,84.86,73.56,85.31,52.03,64635.2,FULL BULLISH 🟢,CE (ATM: 64600 | OTM: 64700),https://www.tradingview.com/symbols/search/?q=BANKNIFTY%2064600%20CE
-Nifty 50,https://www.tradingview.com/chart/?symbol=NSE:NIFTY,79.9,67.4,72.55,49.66,25800.6,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:NIFTY
+Sensex,https://www.tradingview.com/chart/?symbol=NSE:SENSEX,,52.11,70.79,50.04,,Data Error,N/A,https://www.tradingview.com/chart/?symbol=NSE:SENSEX
+Nifty 50,https://www.tradingview.com/chart/?symbol=NSE:NIFTY,24.65,62.16,66.21,49.97,25366.4,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:NIFTY
+Bank Nifty,https://www.tradingview.com/chart/?symbol=NSE:BANKNIFTY,22.94,60.75,78.81,52.6,62609.2,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:BANKNIFTY
 Bankex,https://www.tradingview.com/chart/?symbol=NSE:BANKEX,,,,,,Data Error,N/A,https://www.tradingview.com/chart/?symbol=NSE:BANKEX
