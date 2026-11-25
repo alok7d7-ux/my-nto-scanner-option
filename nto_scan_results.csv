@@ -1,5 +1,5 @@
 Index,Spot Chart,5m,15m,1h,1d,Spot Price,Signal,Actionable Option,Option TV Search
-Nifty 50,https://www.tradingview.com/chart/?symbol=NSE:NIFTY,24.66,62.15,66.21,49.97,25366.4,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:NIFTY
-Bank Nifty,https://www.tradingview.com/chart/?symbol=NSE:BANKNIFTY,22.91,60.76,78.81,52.6,62609.2,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:BANKNIFTY
-Sensex,https://www.tradingview.com/chart/?symbol=NSE:SENSEX,23.93,52.11,70.79,50.04,82435.99,Mixed / Neutral,No Bias - Avoid Trade,https://www.tradingview.com/chart/?symbol=NSE:SENSEX
+Nifty 50,https://www.tradingview.com/chart/?symbol=NSE:NIFTY,63.01,57.07,64.0,50.07,25819.25,FULL BULLISH 🟢,CE (ATM: 25800 | OTM: 25850),https://www.tradingview.com/symbols/search/?q=NIFTY%2025800%20CE
+Bank Nifty,https://www.tradingview.com/chart/?symbol=NSE:BANKNIFTY,57.52,56.28,74.14,53.09,63703.25,FULL BULLISH 🟢,CE (ATM: 63700 | OTM: 63800),https://www.tradingview.com/symbols/search/?q=BANKNIFTY%2063700%20CE
+Sensex,https://www.tradingview.com/chart/?symbol=NSE:SENSEX,62.15,52.93,68.88,50.21,83938.28,FULL BULLISH 🟢,CE (ATM: 83900 | OTM: 84000),https://www.tradingview.com/symbols/search/?q=SENSEX%2083900%20CE
 Bankex,https://www.tradingview.com/chart/?symbol=NSE:BANKEX,,,,,,Data Error,N/A,https://www.tradingview.com/chart/?symbol=NSE:BANKEX
